@@ -218,8 +218,13 @@ def generate_sql(question: str) -> str:
 
 
 def is_read_only(sql: str) -> bool:
-    """Return True only if the query starts with SELECT."""
-    return sql.strip().split()[0].lower() == "select"
+    """
+    Return True for SELECT queries and WITH (CTE) queries.
+    WITH always precedes a SELECT in practice; blocking it would prevent
+    Claude from using subqueries, which it needs for anything non-trivial.
+    """
+    first_word = sql.strip().split()[0].lower()
+    return first_word in ("select", "with")
 
 
 def run_query(sql: str) -> tuple[pd.DataFrame, str | None]:
