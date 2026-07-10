@@ -363,7 +363,7 @@ with tab1:
 
                 st.dataframe(
                     display,
-                    use_container_width=True,
+                    width="stretch",
                     hide_index=True,
                     column_config={
                         "Text": st.column_config.TextColumn(width="large"),
@@ -380,7 +380,7 @@ with tab1:
             with col_map:
                 st.plotly_chart(
                     build_alignment_map(alignments),
-                    use_container_width=True,
+                    width="stretch",
                 )
 
 
@@ -437,7 +437,7 @@ with tab2:
 
     st.dataframe(
         display,
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
         column_config={
             "Text":            st.column_config.TextColumn(width="large"),
@@ -509,7 +509,7 @@ with tab3:
                             st.info("Query returned no rows.")
                         else:
                             st.caption(f"{len(df)} row(s) returned")
-                            st.dataframe(df, use_container_width=True, hide_index=True)
+                            st.dataframe(df, width="stretch", hide_index=True)
                             st.download_button(
                                 "Download as CSV",
                                 data=df.to_csv(index=False).encode("utf-8"),
@@ -537,7 +537,7 @@ with tab3:
                     st.info("Query returned no rows.")
                 else:
                     st.caption(f"{len(df)} row(s) returned")
-                    st.dataframe(df, use_container_width=True, hide_index=True)
+                    st.dataframe(df, width="stretch", hide_index=True)
                     st.download_button(
                         "Download as CSV",
                         data=df.to_csv(index=False).encode("utf-8"),
